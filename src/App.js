@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Music from './Music';
+
 
 function App() {
   const getTrueAnswer = () => eval(`${a}${sign}${b}`);
@@ -20,6 +23,9 @@ function App() {
   const [level, setLevel] = useState(1)
   const [startedTimeOut, setStartedTimeOut] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false)
+
+console.log("variants");
+console.log("${a}${sign}${b}");
 
   const check = (v, i) => {
     setSelected(i);
@@ -46,6 +52,7 @@ function App() {
     setSelected(-1)
   }
 
+
   useEffect(() => {
     setVariants([
       getTrueAnswer(),
@@ -64,7 +71,7 @@ function App() {
     }
     else {
       setIsGameOver(true)
-      player.src = "/audio/over.mp3";
+      player.src = "./o'a.mp3";
       player.play();
     }
   }, [time])
@@ -98,7 +105,10 @@ function App() {
         </div>
       </div>
 
-      <div className="level">level: <span id="level">{level}</span></div>
+      <div className="level">level: <span id="level">{level}</span>
+      </div>
+      <div className="level1"><Music/>
+      </div>
       <a href="https://algorismic.uz" className="d-inline-block mb-4" target="_blank">
         <img src="./img/logo.png" className="logo" alt="" />
       </a>
@@ -114,7 +124,7 @@ function App() {
         <div id="lose" className={`panel ${!isGameOver && "d-none"}`}>
           <img src="img/lose.png" alt="" />
           <h1 className="fw-bold">Game Over</h1>
-          <h1 className="fw-bold">Level: <span id="lastLevelLose">10</span></h1>
+          <h1 className="fw-bold">Level: <span id="lastLevelLose">{level}</span></h1>
           <button className="btn text-white fs-1 mb-0 shadow-none fw-bold" onClick={newGame}>
             {/* <FontAwesomeIcon icon={faRedoAlt} /> */}
             Yangi o'yin
